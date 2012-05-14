@@ -29,7 +29,7 @@
     [self createArtists];
     
     Artists* artistToDisplay = [artists objectAtIndex:0];
-    //biolabel.text = artistToDisplay.bio;
+    biolabel.text = artistToDisplay.bio;
     
     bioContainer.alpha = 0;
     [scroller setContentSize:CGSizeMake(2022, 1764)];
@@ -40,6 +40,8 @@
     UIButton* buttonTapped = sender;
     
     [bioContainer setFrame:CGRectMake(buttonTapped.frame.origin.x, buttonTapped.frame.origin.y, biolabel.frame.size.width, biolabel.frame.size.height)];
+    Artists* artistToDisplay = [artists objectAtIndex:buttonTapped.tag];
+    biolabel.text = artistToDisplay.bio;
     [UIView beginAnimations:@"fadeIn" context:nil];
     bioContainer.alpha = 1;
     [UIView commitAnimations];
