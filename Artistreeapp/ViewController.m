@@ -9,6 +9,7 @@
 #import "ViewController.h"
 
 @implementation ViewController
+@synthesize bioContainer;
 @synthesize scroller;
 @synthesize biolabel, artists, connections;
 
@@ -28,15 +29,29 @@
     [self createArtists];
     
     Artists* artistToDisplay = [artists objectAtIndex:0];
-    biolabel.text = artistToDisplay.bio;
+    //biolabel.text = artistToDisplay.bio;
     
-    
+    bioContainer.alpha = 0;
+    [scroller setContentSize:CGSizeMake(2022, 1764)];
 
 }
 
 - (IBAction)connectArtists:(id)sender {
+    UIButton* buttonTapped = sender;
     
+    [bioContainer setFrame:CGRectMake(buttonTapped.frame.origin.x, buttonTapped.frame.origin.y, biolabel.frame.size.width, biolabel.frame.size.height)];
+    [UIView beginAnimations:@"fadeIn" context:nil];
+    bioContainer.alpha = 1;
+    [UIView commitAnimations];
 }
+
+- (IBAction)hideBio:(id)sender {
+    [UIView beginAnimations:@"fadeOut" context:nil];
+    bioContainer.alpha = 0;
+    [UIView commitAnimations];
+}
+
+
 
 -(void)createArtists
 {
@@ -56,6 +71,7 @@
 {
     [self setBiolabel:nil];
     [self setScroller:nil];
+    [self setBioContainer:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;

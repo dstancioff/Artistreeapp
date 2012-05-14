@@ -14,12 +14,14 @@
     NSMutableArray* connections;
     NSMutableArray* artists;
 }
+@property (weak, nonatomic) IBOutlet UIView *bioContainer;
 @property (strong, nonatomic) IBOutlet UILabel *biolabel;
 @property (readwrite, strong) NSMutableArray* artists;
 @property (readwrite, strong) NSMutableArray* connections;
 @property (weak, nonatomic) IBOutlet UIScrollView *scroller;
 
 - (IBAction)connectArtists:(id)sender;
+- (IBAction)hideBio:(id)sender;
 
 -(void)createArtists;
 
